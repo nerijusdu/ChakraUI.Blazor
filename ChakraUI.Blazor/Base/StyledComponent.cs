@@ -23,7 +23,7 @@ namespace ChakraUI.Blazor.Base
                 .Select(attributeKey =>
                 {
                     var cssProperty = CssAttributesMap.Get(attributeKey);
-                    var value = TransformerManager.Transform(cssProperty, parametersDict[attributeKey]);
+                    var value = TransformerManager.Transform(attributeKey, parametersDict[attributeKey]);
                     return $"{cssProperty}: {value};";
                 });
 

@@ -4,8 +4,6 @@ namespace ChakraUI.Blazor.Transformers
 {
     public class ColorTransformer : IPropertyValueTransformer
     {
-        public static string Identifier => "ColorTransformer";
-
         private readonly Dictionary<string, string> colorMap = new()
         {
             {"red.100", "#FED7D7"},
