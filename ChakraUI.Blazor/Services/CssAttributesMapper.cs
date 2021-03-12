@@ -3,10 +3,11 @@ using System.Linq;
 using System.Reflection;
 using ChakraUI.Blazor.Attributes;
 using ChakraUI.Blazor.Extensions;
+using ChakraUI.Blazor.Parameters;
 
-namespace ChakraUI.Blazor.Parameters
+namespace ChakraUI.Blazor.Services
 {
-    public interface ICssAttributesMap
+    public interface ICssAttributesMapper
     {
         bool ContainsKey(string key);
 
@@ -15,11 +16,11 @@ namespace ChakraUI.Blazor.Parameters
         string Format(string key, string value);
     }
 
-    public class CssAttributesMap : ICssAttributesMap
+    public class CssAttributesMapper : ICssAttributesMapper
     {
         private readonly Dictionary<string, string[]> map;
 
-        public CssAttributesMap()
+        public CssAttributesMapper()
         {
             map = GetMap();
         }

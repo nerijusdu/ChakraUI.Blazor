@@ -2,6 +2,7 @@
 using System.Threading.Tasks;
 using BlazorStyled;
 using ChakraUI.Blazor.Parameters;
+using ChakraUI.Blazor.Services;
 using ChakraUI.Blazor.Transformers;
 using Microsoft.AspNetCore.Components;
 
@@ -10,7 +11,7 @@ namespace ChakraUI.Blazor.Base
     public class StyledComponent : StyledComponentBase
     {
         [Inject] public IStyled Styled { get; set; }
-        [Inject] public ICssAttributesMap CssAttributesMap { get; set; }
+        [Inject] public ICssAttributesMapper CssAttributesMapper { get; set; }
         [Inject] public ITransformerManager TransformerManager { get; set; }
 
         protected string className;
@@ -19,11 +20,11 @@ namespace ChakraUI.Blazor.Base
         {
             var parametersDict = parameters.ToDictionary();
             var propertiesList = parametersDict.Keys
-                .Where(attributeKey => CssAttributesMap.ContainsKey(attributeKey))
+                .Where(attributeKey => CssAttributesMapper.ContainsKey(attributeKey))
                 .Select(attributeKey =>
                 {
                     var value = TransformerManager.Transform(attributeKey, parametersDict[attributeKey]);
-                    return CssAttributesMap.Format(attributeKey, value);
+                    return CssAttributesMapper.Format(attributeKey, value);
                 });
 
             className = Styled.Css(string.Join("", propertiesList));

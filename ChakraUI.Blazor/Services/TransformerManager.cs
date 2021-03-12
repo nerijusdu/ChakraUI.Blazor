@@ -4,8 +4,9 @@ using System.Linq;
 using System.Reflection;
 using ChakraUI.Blazor.Attributes;
 using ChakraUI.Blazor.Parameters;
+using ChakraUI.Blazor.Transformers;
 
-namespace ChakraUI.Blazor.Transformers
+namespace ChakraUI.Blazor.Services
 {
     public interface ITransformerManager
     {
@@ -14,8 +15,8 @@ namespace ChakraUI.Blazor.Transformers
 
     public class TransformerManager : ITransformerManager
     {
-        private readonly Dictionary<Type, IPropertyValueTransformer> transformersMap;
-        private readonly Dictionary<string, Type[]> propertyToTransformerMap;
+        private static Dictionary<Type, IPropertyValueTransformer> transformersMap;
+        private static Dictionary<string, Type[]> propertyToTransformerMap;
 
         public TransformerManager()
         {

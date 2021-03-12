@@ -1,5 +1,6 @@
 ﻿using BlazorStyled;
 using ChakraUI.Blazor.Parameters;
+using ChakraUI.Blazor.Services;
 using ChakraUI.Blazor.Transformers;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -11,7 +12,7 @@ namespace ChakraUI.Blazor.Extensions
         public static void AddChakraUI(this IServiceCollection services)
         {
             services.AddBlazorStyled();
-            services.AddSingleton<ICssAttributesMap, CssAttributesMap>();
+            services.AddSingleton<ICssAttributesMapper, CssAttributesMapper>();
             services.AddSingleton<ITransformerManager, TransformerManager>();
         }
     }
