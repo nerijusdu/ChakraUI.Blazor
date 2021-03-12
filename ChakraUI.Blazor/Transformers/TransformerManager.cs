@@ -15,7 +15,7 @@ namespace ChakraUI.Blazor.Transformers
     public class TransformerManager : ITransformerManager
     {
         private readonly Dictionary<Type, IPropertyValueTransformer> transformersMap;
-        private readonly Dictionary<string, Type> propertyToTransformerMap;
+        private readonly Dictionary<string, Type[]> propertyToTransformerMap;
 
         public TransformerManager()
         {
@@ -30,11 +30,12 @@ namespace ChakraUI.Blazor.Transformers
                 return value.ToString();
             }
 
-            var transformer = transformersMap[propertyToTransformerMap[propertyName]];
-            return transformer.Transform(value);
+            return propertyToTransformerMap[propertyName]
+                .Aggregate(value, (current, type) => transformersMap[type].Transform(current))
+                .ToString();
         }
 
-        private Dictionary<string, Type> GetPropertyToTransformerMap()
+        private static Dictionary<string, Type[]> GetPropertyToTransformerMap()
         {
             return typeof(StyledComponentBase)
                 .GetProperties()
@@ -44,10 +45,10 @@ namespace ChakraUI.Blazor.Transformers
                     Name = x.Name
                 })
                 .Where(x => x.Attribute != null)
-                .ToDictionary(x => x.Name, x => x.Attribute.TransformerType);
+                .ToDictionary(x => x.Name, x => x.Attribute.TransformerTypes);
         }
 
-        private Dictionary<Type, IPropertyValueTransformer> GetTransformersMap()
+        private static Dictionary<Type, IPropertyValueTransformer> GetTransformersMap()
         {
             var type = typeof(IPropertyValueTransformer);
             return AppDomain.CurrentDomain.GetAssemblies()

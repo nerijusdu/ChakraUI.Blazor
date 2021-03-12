@@ -22,9 +22,8 @@ namespace ChakraUI.Blazor.Base
                 .Where(attributeKey => CssAttributesMap.ContainsKey(attributeKey))
                 .Select(attributeKey =>
                 {
-                    var cssProperty = CssAttributesMap.Get(attributeKey);
                     var value = TransformerManager.Transform(attributeKey, parametersDict[attributeKey]);
-                    return $"{cssProperty}: {value};";
+                    return CssAttributesMap.Format(attributeKey, value);
                 });
 
             className = Styled.Css(string.Join("", propertiesList));

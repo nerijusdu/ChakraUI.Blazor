@@ -2,6 +2,6 @@
 {
     public interface IPropertyValueTransformer
     {
-        string Transform(object value);
+        object Transform(object value);
     }
 }

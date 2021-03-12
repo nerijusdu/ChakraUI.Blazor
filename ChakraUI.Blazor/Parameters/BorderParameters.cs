@@ -1,4 +1,5 @@
 ﻿using ChakraUI.Blazor.Attributes;
+using ChakraUI.Blazor.Transformers;
 using Microsoft.AspNetCore.Components;
 
 namespace ChakraUI.Blazor.Parameters
@@ -6,6 +7,7 @@ namespace ChakraUI.Blazor.Parameters
     public partial class StyledComponentBase
     {
         [Parameter]
+        [Transformer(typeof(ColorTransformer))]
         public string Border { get; set; }
 
         [Parameter]
@@ -15,6 +17,7 @@ namespace ChakraUI.Blazor.Parameters
         public string BorderStyle { get; set; }
 
         [Parameter]
+        [Transformer(typeof(ColorTransformer))]
         public string BorderColor { get; set; }
 
         [Parameter]
@@ -25,6 +28,7 @@ namespace ChakraUI.Blazor.Parameters
         public string Rounded { get; set; }
 
         [Parameter]
+        [Transformer(typeof(ColorTransformer))]
         public string BorderTop { get; set; }
 
         [Parameter]
@@ -52,24 +56,31 @@ namespace ChakraUI.Blazor.Parameters
         public string BorderRightStyle { get; set; }
 
         [Parameter]
+        [Transformer(typeof(ColorTransformer))]
         public string BorderTopColor { get; set; }
 
         [Parameter]
+        [Transformer(typeof(ColorTransformer))]
         public string BorderBottomColor { get; set; }
 
         [Parameter]
+        [Transformer(typeof(ColorTransformer))]
         public string BorderLeftColor { get; set; }
 
         [Parameter]
+        [Transformer(typeof(ColorTransformer))]
         public string BorderRightColor { get; set; }
 
         [Parameter]
+        [Transformer(typeof(ColorTransformer))]
         public string BorderRight { get; set; }
 
         [Parameter]
+        [Transformer(typeof(ColorTransformer))]
         public string BorderBottom { get; set; }
 
         [Parameter]
+        [Transformer(typeof(ColorTransformer))]
         public string BorderLeft { get; set; }
 
         [Parameter]
@@ -124,13 +135,17 @@ namespace ChakraUI.Blazor.Parameters
         [CssName("broder-bottom-right-radius")]
         public string RoundedBottomRight { get; set; }
 
-        [Parameter] // TODO: how do I map multiple css properties?
+        [Parameter]
+        [CssName("border-left", "border-right")]
+        [Transformer(typeof(ColorTransformer))]
         public string BorderX { get; set; }
 
         [Parameter]
         public string BorderInline { get; set; }
 
         [Parameter]
+        [CssName("border-top", "border-bottom")]
+        [Transformer(typeof(ColorTransformer))]
         public string BorderY { get; set; }
 
         [Parameter]
