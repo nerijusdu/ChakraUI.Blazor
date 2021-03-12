@@ -1,11 +1,12 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
 
 namespace ChakraUI.Blazor.Transformers
 {
-    public class ColorTransformer : IPropertyValueTransformer
+    public class ColorTransformer : TransformerBase, IPropertyValueTransformer
     {
-        private readonly List<string> colorMapKeys;
+        public object Transform(object value) => TransformPartialValue(value);
+
+        protected override Dictionary<string, string> GetMap() => colorMap;
 
         private readonly Dictionary<string, string> colorMap = new()
         {
@@ -134,20 +135,5 @@ namespace ChakraUI.Blazor.Transformers
             {"pink.800", "#702459"},
             {"pink.900", "#521B41"}
         };
-
-        public ColorTransformer()
-        {
-            colorMapKeys = colorMap.Keys.ToList();
-        }
-
-        public object Transform(object value)
-        {
-            var valueStr = value?.ToString() ?? string.Empty;
-            return colorMapKeys
-                .Where(x => valueStr.Contains(x))
-                .Aggregate(
-                    valueStr,
-                    (current, colorKey) => current.Replace(colorKey, colorMap[colorKey]));
-        }
     }
 }
