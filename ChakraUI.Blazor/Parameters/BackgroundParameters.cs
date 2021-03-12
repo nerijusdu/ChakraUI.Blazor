@@ -8,31 +8,40 @@ namespace ChakraUI.Blazor.Parameters
     {
         [Parameter]
         [Transformer(typeof(ColorTransformer))]
+        [CssName("background")]
         public string Bg { get; set; }
 
         [Parameter]
         [Transformer(typeof(ColorTransformer))]
+        [CssName("background-color")]
         public string BgColor { get; set; }
 
         [Parameter]
+        [CssName("background-image")]
         public string BgImage { get; set; }
 
         [Parameter]
+        [CssName("background-size")]
         public string BgSize { get; set; }
 
         [Parameter]
+        [CssName("background-position")]
         public string BgPosition { get; set; }
 
         [Parameter]
+        [CssName("background-repeat")]
         public string BgRepeat { get; set; }
 
         [Parameter]
+        [CssName("background-attachment")]
         public string BgAttachment { get; set; }
 
         [Parameter]
+        [CssName("background-blend-mode")]
         public string BgBlendMode { get; set; }
 
         [Parameter]
+        [CssName("background-clip")]
         public string BgClip { get; set; }
 
         [Parameter]

@@ -8,6 +8,7 @@ namespace ChakraUI.Blazor.Parameters
     {
         [Parameter]
         [Transformer(typeof(ColorTransformer))]
+        [CssName("color")]
         public string TextColor { get; set; }
 
         [Parameter]
