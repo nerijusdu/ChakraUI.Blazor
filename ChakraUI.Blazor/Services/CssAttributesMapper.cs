@@ -32,6 +32,11 @@ namespace ChakraUI.Blazor.Services
                 .Select(x =>
                 {
                     var attr = x.GetCustomAttribute<CssNameAttribute>();
+                    if (attr?.Ignore == true)
+                    {
+                        return null;
+                    }
+
                     var cssNames = attr?.CssProperties ?? new[] {x.Name.ToKebabCase()};
                     return new
                     {
@@ -39,6 +44,7 @@ namespace ChakraUI.Blazor.Services
                         Name = x.Name
                     };
                 })
+                .Where(x => x != null)
                 .ToDictionary(x => x.Name, x => x.CssNames);
         }
 

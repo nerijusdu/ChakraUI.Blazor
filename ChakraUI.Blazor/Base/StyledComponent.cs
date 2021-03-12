@@ -17,10 +17,9 @@ namespace ChakraUI.Blazor.Base
         [Inject] protected ITransformerManager TransformerManager { get; set; }
         [Inject] protected IColorService ColorService { get; set; }
 
-        protected string className = "buttonnnn";
-        private string styles;
+        protected string className;
 
-        protected void RefreshStyles()
+        protected async Task RefreshStyles()
         {
             SetColorScheme(ColorScheme?.ToLower() ?? "gray");
             var parametersDict = GetPropertiesDict();
@@ -31,23 +30,12 @@ namespace ChakraUI.Blazor.Base
                     var value = TransformerManager.Transform(attributeKey, parametersDict[attributeKey]);
                     return CssAttributesMapper.Format(attributeKey, value);
                 });
-
-            styles = string.Join("", propertiesList);
+            className = await Styled.CssAsync(string.Join("", propertiesList));
         }
 
-        protected override void OnInitialized()
+        protected override async Task OnInitializedAsync()
         {
-            RefreshStyles();
-        }
-
-        protected override async Task OnAfterRenderAsync(bool firstRender)
-        {
-            Console.WriteLine($"after render: {styles}");
-            className = await Styled.CssAsync(styles);
-            if (firstRender)
-            {
-               StateHasChanged();
-            }
+            await RefreshStyles();
         }
 
         protected virtual void SetColorScheme(string schemeName)

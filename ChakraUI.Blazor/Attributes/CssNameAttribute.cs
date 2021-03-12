@@ -9,6 +9,7 @@ namespace ChakraUI.Blazor.Attributes
     public class CssNameAttribute : Attribute
     {
         public string[] CssProperties { get; }
+        public bool Ignore { get; set; }
 
         public CssNameAttribute(params string[] cssProperties)
         {

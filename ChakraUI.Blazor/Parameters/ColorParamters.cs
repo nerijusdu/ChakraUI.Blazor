@@ -7,6 +7,7 @@ namespace ChakraUI.Blazor.Parameters
     public partial class StyledComponentBase
     {
         [Parameter]
+        [CssName(Ignore = true)]
         public string ColorScheme { get; set; }
 
         [Parameter]

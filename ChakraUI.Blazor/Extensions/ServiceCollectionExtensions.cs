@@ -1,7 +1,5 @@
 ﻿using BlazorStyled;
-using ChakraUI.Blazor.Parameters;
 using ChakraUI.Blazor.Services;
-using ChakraUI.Blazor.Transformers;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace ChakraUI.Blazor.Extensions
