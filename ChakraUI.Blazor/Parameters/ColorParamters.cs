@@ -7,6 +7,9 @@ namespace ChakraUI.Blazor.Parameters
     public partial class StyledComponentBase
     {
         [Parameter]
+        public string ColorScheme { get; set; }
+
+        [Parameter]
         [Transformer(typeof(ColorTransformer))]
         [CssName("color")]
         public string TextColor { get; set; }

@@ -1,8 +1,66 @@
 ﻿@inherits StyledComponent
 
-<button class="@className">@ChildContent</button>
+<button class="@className"
+        type="@Type">
+    @if (LeftIcon != null && !IsLoading)
+    {
+        // ButtonIcon
+    }
+
+    @if (IsLoading)
+    {
+        // ButtonSpinner
+    }
+    else
+    {
+        @if (LeftIcon != null)
+        {
+            // ButtonIcon
+        }
+
+        @ChildContent
+
+        @if (RightIcon != null)
+        {
+            // ButtonIcon
+        }
+    }
+
+</button>
 
 @code {
-    [Parameter]
-    public RenderFragment ChildContent { get; set; }
+    [Parameter] public RenderFragment ChildContent { get; set; }
+    [Parameter] public bool IsLoading { get; set; }
+    [Parameter] public bool IsActive { get; set; }
+    [Parameter] public bool IsDisabled { get; set; }
+    [Parameter] public bool IsFullWidth { get; set; }
+    [Parameter] public string Type { get; set; }
+    [Parameter] public RenderFragment LeftIcon { get; set; }
+    [Parameter] public RenderFragment RightIcon { get; set; }
+    [Parameter] public string IconSpacing { get; set; }
+    [Parameter] public RenderFragment Spinner { get; set; }
+
+    protected override void OnInitialized()
+    {
+        Display = "inline-flex";
+        Appearance = "none";
+        AlignItems = "center";
+        JustifyContent = "center";
+        Transition = "all 250ms";
+        UserSelect = "none";
+        Position = "relative";
+        WhiteSpace = "nowrap";
+        VerticalAlign = "middle";
+        Outline = "none";
+        Width = IsFullWidth ? "100%" : "auto";
+        LineHeight = "1.2";
+        BorderRadius = "md";
+        FontWeight = "semibold";
+        Height = 10;
+        MinW = 10;
+        Border = "0";
+        // TODO: pseudo-classes
+
+        base.OnInitialized();
+    }
 }

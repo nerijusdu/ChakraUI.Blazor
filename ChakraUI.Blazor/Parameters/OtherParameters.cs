@@ -30,5 +30,14 @@ namespace ChakraUI.Blazor.Parameters
 
         [Parameter]
         public string ObjectPosition { get; set; }
+
+        [Parameter]
+        public string Outline { get; set; }
+
+        [Parameter]
+        public string OutlineOffset { get; set; }
+
+        [Parameter]
+        public string OutlineColor { get; set; }
     }
 }

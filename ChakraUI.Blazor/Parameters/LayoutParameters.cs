@@ -15,85 +15,85 @@ namespace ChakraUI.Blazor.Parameters
 
         [Parameter]
         [Transformer(typeof(SizesTransformer))]
-        public string Width { get; set; }
+        public object Width { get; set; }
 
         [Parameter]
         [CssName("width")]
         [Transformer(typeof(SizesTransformer))]
-        public string W { get; set; }
+        public object W { get; set; }
 
         [Parameter]
         [Transformer(typeof(SizesTransformer))]
-        public string InlineSize { get; set; }
+        public object InlineSize { get; set; }
 
         [Parameter]
         [Transformer(typeof(SizesTransformer))]
-        public string BoxSize { get; set; }
+        public object BoxSize { get; set; }
 
         [Parameter]
         [Transformer(typeof(SizesTransformer))]
-        public string MaxWidth { get; set; }
+        public object MaxWidth { get; set; }
 
         [Parameter]
         [CssName("max-width")]
         [Transformer(typeof(SizesTransformer))]
-        public string MaxW { get; set; }
+        public object MaxW { get; set; }
 
         [Parameter]
         [Transformer(typeof(SizesTransformer))]
-        public string MaxInlineSize { get; set; }
+        public object MaxInlineSize { get; set; }
 
         [Parameter]
         [Transformer(typeof(SizesTransformer))]
-        public string MinWidth { get; set; }
+        public object MinWidth { get; set; }
 
         [Parameter]
         [CssName("min-width")]
         [Transformer(typeof(SizesTransformer))]
-        public string MinW { get; set; }
+        public object MinW { get; set; }
 
         [Parameter]
         [Transformer(typeof(SizesTransformer))]
-        public string MinInlineSize { get; set; }
+        public object MinInlineSize { get; set; }
 
         [Parameter]
         [Transformer(typeof(SizesTransformer))]
-        public string Height { get; set; }
+        public object Height { get; set; }
 
         [Parameter]
         [CssName("height")]
         [Transformer(typeof(SizesTransformer))]
-        public string H { get; set; }
+        public object H { get; set; }
 
         [Parameter]
         [Transformer(typeof(SizesTransformer))]
-        public string BlockSize { get; set; }
+        public object BlockSize { get; set; }
 
         [Parameter]
         [Transformer(typeof(SizesTransformer))]
-        public string MaxHeight { get; set; }
+        public object MaxHeight { get; set; }
 
         [Parameter]
         [CssName("max-height")]
         [Transformer(typeof(SizesTransformer))]
-        public string MaxH { get; set; }
+        public object MaxH { get; set; }
 
         [Parameter]
         [Transformer(typeof(SizesTransformer))]
-        public string MaxBlockSize { get; set; }
+        public object MaxBlockSize { get; set; }
 
         [Parameter]
         [Transformer(typeof(SizesTransformer))]
-        public string MinHeight { get; set; }
+        public object MinHeight { get; set; }
 
         [Parameter]
         [CssName("min-height")]
         [Transformer(typeof(SizesTransformer))]
-        public string MinH { get; set; }
+        public object MinH { get; set; }
 
         [Parameter]
         [Transformer(typeof(SizesTransformer))]
-        public string MinBlockSize { get; set; }
+        public object MinBlockSize { get; set; }
 
         [Parameter]
         public string VerticalAlign { get; set; }

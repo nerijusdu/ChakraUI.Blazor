@@ -17,9 +17,11 @@ namespace ChakraUI.Blazor.Services
     {
         private static Dictionary<Type, IPropertyValueTransformer> transformersMap;
         private static Dictionary<string, Type[]> propertyToTransformerMap;
+        private readonly IColorService colorService;
 
-        public TransformerManager()
+        public TransformerManager(IColorService colorService)
         {
+            this.colorService = colorService;
             propertyToTransformerMap = GetPropertyToTransformerMap();
             transformersMap = GetTransformersMap();
         }
@@ -49,13 +51,17 @@ namespace ChakraUI.Blazor.Services
                 .ToDictionary(x => x.Name, x => x.Attribute.TransformerTypes);
         }
 
-        private static Dictionary<Type, IPropertyValueTransformer> GetTransformersMap()
+        private Dictionary<Type, IPropertyValueTransformer> GetTransformersMap()
         {
             var type = typeof(IPropertyValueTransformer);
             return AppDomain.CurrentDomain.GetAssemblies()
                 .SelectMany(s => s.GetTypes())
                 .Where(p => type.IsAssignableFrom(p) && type != p)
-                .ToDictionary(t => t, t => (IPropertyValueTransformer)Activator.CreateInstance(t));
+                .ToDictionary(t => t, t => t switch
+                {
+                    var transformerType when transformerType == typeof(ColorTransformer) => new ColorTransformer(colorService),
+                    _ => (IPropertyValueTransformer)Activator.CreateInstance(t)
+                });
         }
     }
 }

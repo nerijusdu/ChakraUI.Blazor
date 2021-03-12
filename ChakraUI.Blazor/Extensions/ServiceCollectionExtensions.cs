@@ -12,6 +12,8 @@ namespace ChakraUI.Blazor.Extensions
         public static void AddChakraUI(this IServiceCollection services)
         {
             services.AddBlazorStyled();
+
+            services.AddSingleton<IColorService, ColorService>();
             services.AddSingleton<ICssAttributesMapper, CssAttributesMapper>();
             services.AddSingleton<ITransformerManager, TransformerManager>();
         }
