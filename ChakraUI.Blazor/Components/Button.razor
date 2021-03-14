@@ -1,4 +1,5 @@
-﻿@inherits StyledComponent
+﻿@using ChakraUI.Blazor.Models
+@inherits StyledComponent
 
 <button class="@className"
         type="@Type">
@@ -59,7 +60,6 @@
         Height = 10;
         MinW = 10;
         Border = "0";
-        // TODO: pseudo-classes
 
         base.OnInitialized();
     }

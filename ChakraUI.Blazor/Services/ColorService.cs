@@ -151,7 +151,8 @@ namespace ChakraUI.Blazor.Services
             return new()
             {
                 Primary = colorMap[$"{name}.500"],
-                Secondary = colorMap[$"{name}.300"],
+                Hover = colorMap[$"{name}.600"],
+                Active = colorMap[$"{name}.700"],
                 Text = colorMap["white"]
             };
         }
