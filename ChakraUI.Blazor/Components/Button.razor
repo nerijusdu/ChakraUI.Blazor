@@ -2,7 +2,9 @@
 @inherits StyledComponent
 
 <button class="@className"
-        type="@Type">
+        type="@Type"
+        disabled="@IsDisabled"
+        @attributes="OtherParameters">
     @if (LeftIcon != null && !IsLoading)
     {
         // ButtonIcon
@@ -40,8 +42,9 @@
     [Parameter] public RenderFragment RightIcon { get; set; }
     [Parameter] public string IconSpacing { get; set; }
     [Parameter] public RenderFragment Spinner { get; set; }
+    [Parameter] public string Size { get; set; } = "md";
 
-    protected override void OnInitialized()
+    public override Task SetParametersAsync(ParameterView parameters)
     {
         Display = "inline-flex";
         Appearance = "none";
@@ -57,10 +60,68 @@
         LineHeight = "1.2";
         BorderRadius = "md";
         FontWeight = "semibold";
-        Height = 10;
-        MinW = 10;
         Border = "0";
+        Cursor = "pointer";
 
-        base.OnInitialized();
+        SetSize();
+
+        return base.SetParametersAsync(parameters);
+    }
+
+    protected override void OnParametersSet()
+    {
+        SetSize();
+        base.OnParametersSet();
+    }
+
+    private void SetSize()
+    {
+        if (!sizes.ContainsKey(Size)) return;
+        var size = sizes[Size];
+        H = size.H;
+        MinH = size.MinW;
+        FontSize = size.FontSize;
+        Px = size.Px;
+    }
+
+    private static readonly Dictionary<string, ButtonSizeProps> sizes = new()
+    {
+        {"lg", new ()
+        {
+            H = 12,
+            MinW = 12,
+            FontSize = "lg",
+            Px = 6
+        }},
+        {"md", new ()
+        {
+            H = 10,
+            MinW = 10,
+            FontSize = "md",
+            Px = 4
+        }},
+        {"sm", new ()
+        {
+            H = 8,
+            MinW = 8,
+            FontSize = "sm",
+            Px = 3
+        }},
+        {"xs", new ()
+        {
+            H = 6,
+            MinW = 6,
+            FontSize = "xs",
+            Px = 2
+        }}
+    };
+
+    private class ButtonSizeProps
+    {
+        public int H { get; set; }
+        public int MinW { get; set; }
+        public string FontSize { get; set; }
+        public int Px { get; set; }
     }
 }
+

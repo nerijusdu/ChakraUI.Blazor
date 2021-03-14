@@ -17,29 +17,31 @@ namespace ChakraUI.Blazor.Base
         [Inject] protected ITransformerManager TransformerManager { get; set; }
         [Inject] protected IColorService ColorService { get; set; }
 
+        [Parameter(CaptureUnmatchedValues = true)]
+        public Dictionary<string, object> OtherParameters { get; set; }
+
         protected string className;
+
+        protected override async Task OnParametersSetAsync()
+        {
+            await RefreshStyles();
+        }
 
         protected async Task RefreshStyles()
         {
-            Console.WriteLine("building");
             SetColorScheme(ColorScheme?.ToLower() ?? "gray");
 
             var parametersDict = GetPropertiesDict();
-            className = await Styled.CssAsync(GetCss(parametersDict));
-
-            var pseudoClassDict = GetPseudoClassesWithProperties();
-            foreach (var key in pseudoClassDict.Keys.Where(key => pseudoClassDict[key] != null))
+            if (string.IsNullOrEmpty(className))
             {
-                await Styled.CssAsync(
-                    ApplyPseudoClass(key, className),
-                    GetCss(pseudoClassDict[key]));
+                className = await Styled.CssAsync(GetCss(parametersDict));
+            }
+            else
+            {
+                await Styled.CssAsync(className, GetCss(parametersDict));
             }
 
-        }
-
-        protected override async Task OnInitializedAsync()
-        {
-            await RefreshStyles();
+            await ApplyPseudoClasses(this, className);
         }
 
         protected virtual void SetColorScheme(string schemeName)
@@ -60,6 +62,8 @@ namespace ChakraUI.Blazor.Base
             _disabled.Opacity = "0.4";
             _disabled.Cursor = "not-allowed";
             _disabled.BoxShadow = "none";
+            _disabled._active ??= new();
+            _disabled._active.Background = scheme.Primary;
 
             _active ??= new();
             _active.Background = scheme.Active;
@@ -67,6 +71,25 @@ namespace ChakraUI.Blazor.Base
             _focus ??= new();
             _focus.BoxShadow = "outline";
 
+        }
+
+        private async Task ApplyPseudoClasses(StyledComponentBase component, string _className)
+        {
+            var pseudoClassDict = component.GetPseudoClassesWithProperties();
+
+            foreach (var key in pseudoClassDict.Keys)
+            {
+                var subComponent = pseudoClassDict[key];
+                if (subComponent == null) continue;
+                var pseudoClassName = ApplyPseudoClass(key, _className);
+
+                Console.WriteLine($"{ApplyPseudoClass(key, _className)}: {GetCss(subComponent.GetPropertiesDict())}");
+                await Styled.CssAsync(
+                    pseudoClassName,
+                    GetCss(subComponent.GetPropertiesDict()));
+
+                await ApplyPseudoClasses(subComponent, pseudoClassName);
+            }
         }
 
         private string GetCss(Dictionary<string, object> parametersDict)
@@ -78,12 +101,15 @@ namespace ChakraUI.Blazor.Base
                     var value = TransformerManager.Transform(attributeKey, parametersDict[attributeKey]);
                     return CssAttributesMapper.Format(attributeKey, value);
                 });
+
             return string.Join("", propertiesList);
         }
 
         private string ApplyPseudoClass(PseudoClasses pseudoClass, string classname)
         {
-            string cls = classname?.IndexOf("-") != -1 ? "." + classname : classname;
+            var cls = classname?.IndexOf("-") != -1 && classname?.StartsWith(".") != true
+                ? "." + classname
+                : classname;
             return pseudoClass switch
             {
                 PseudoClasses.Active => $"{cls}:active",

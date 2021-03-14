@@ -9,147 +9,147 @@ namespace ChakraUI.Blazor.Parameters
         [Parameter]
         [Transformer(typeof(SizesTransformer))]
         [CssName("margin")]
-        public string M { get; set; }
+        public object M { get; set; }
 
         [Parameter]
         [Transformer(typeof(SizesTransformer))]
-        public string Margin { get; set; }
+        public object Margin { get; set; }
 
         [Parameter]
         [Transformer(typeof(SizesTransformer))]
         [CssName("margin-top")]
-        public string Mt { get; set; }
+        public object Mt { get; set; }
 
         [Parameter]
         [Transformer(typeof(SizesTransformer))]
-        public string MarginTop { get; set; }
+        public object MarginTop { get; set; }
 
         [Parameter]
         [Transformer(typeof(SizesTransformer))]
         [CssName("margin-right")]
-        public string Mr { get; set; }
+        public object Mr { get; set; }
 
         [Parameter]
         [Transformer(typeof(SizesTransformer))]
-        public string MarginRight { get; set; }
+        public object MarginRight { get; set; }
 
         [Parameter]
         [Transformer(typeof(SizesTransformer))]
         [CssName("margin-bottom")]
-        public string Mb { get; set; }
+        public object Mb { get; set; }
 
         [Parameter]
         [Transformer(typeof(SizesTransformer))]
-        public string MarginBottom { get; set; }
+        public object MarginBottom { get; set; }
 
         [Parameter]
         [Transformer(typeof(SizesTransformer))]
         [CssName("margin-left")]
-        public string Ml { get; set; }
+        public object Ml { get; set; }
 
         [Parameter]
         [Transformer(typeof(SizesTransformer))]
-        public string MarginLeft { get; set; }
-
-        [Parameter]
-        [Transformer(typeof(SizesTransformer))]
-        [CssName("margin-left", "margin-right")]
-        public string Mx { get; set; }
-
-        [Parameter]
-        [Transformer(typeof(SizesTransformer))]
-        public string MarginInline { get; set; }
+        public object MarginLeft { get; set; }
 
         [Parameter]
         [Transformer(typeof(SizesTransformer))]
         [CssName("margin-left", "margin-right")]
-        public string MarginX { get; set; }
+        public object Mx { get; set; }
+
+        [Parameter]
+        [Transformer(typeof(SizesTransformer))]
+        public object MarginInline { get; set; }
+
+        [Parameter]
+        [Transformer(typeof(SizesTransformer))]
+        [CssName("margin-left", "margin-right")]
+        public object MarginX { get; set; }
 
         [Parameter]
         [Transformer(typeof(SizesTransformer))]
         [CssName("margin-top", "margin-bottom")]
-        public string My { get; set; }
+        public object My { get; set; }
 
         [Parameter]
         [Transformer(typeof(SizesTransformer))]
-        public string MarginBlock { get; set; }
+        public object MarginBlock { get; set; }
 
         [Parameter]
         [Transformer(typeof(SizesTransformer))]
         [CssName("margin-top", "margin-bottom")]
-        public string MarginY { get; set; }
+        public object MarginY { get; set; }
 
         [Parameter]
         [Transformer(typeof(SizesTransformer))]
         [CssName("padding")]
-        public string P { get; set; }
+        public object P { get; set; }
 
         [Parameter]
         [Transformer(typeof(SizesTransformer))]
-        public string Padding { get; set; }
+        public object Padding { get; set; }
 
         [Parameter]
         [Transformer(typeof(SizesTransformer))]
         [CssName("padding-top")]
-        public string Pt { get; set; }
+        public object Pt { get; set; }
 
         [Parameter]
         [Transformer(typeof(SizesTransformer))]
-        public string PaddingTop { get; set; }
+        public object PaddingTop { get; set; }
 
         [Parameter]
         [Transformer(typeof(SizesTransformer))]
         [CssName("padding-right")]
-        public string Pr { get; set; }
+        public object Pr { get; set; }
 
         [Parameter]
         [Transformer(typeof(SizesTransformer))]
-        public string PaddingRight { get; set; }
+        public object PaddingRight { get; set; }
 
         [Parameter]
         [Transformer(typeof(SizesTransformer))]
         [CssName("padding-bottom")]
-        public string Pb { get; set; }
+        public object Pb { get; set; }
 
         [Parameter]
         [Transformer(typeof(SizesTransformer))]
-        public string PaddingBottom { get; set; }
+        public object PaddingBottom { get; set; }
 
         [Parameter]
         [Transformer(typeof(SizesTransformer))]
         [CssName("padding-left")]
-        public string Pl { get; set; }
+        public object Pl { get; set; }
 
         [Parameter]
         [Transformer(typeof(SizesTransformer))]
-        public string PaddingLeft { get; set; }
-
-        [Parameter]
-        [Transformer(typeof(SizesTransformer))]
-        [CssName("padding-left", "padding-right")]
-        public string Px { get; set; }
-
-        [Parameter]
-        [Transformer(typeof(SizesTransformer))]
-        public string PaddingInline { get; set; }
+        public object PaddingLeft { get; set; }
 
         [Parameter]
         [Transformer(typeof(SizesTransformer))]
         [CssName("padding-left", "padding-right")]
-        public string PaddingX { get; set; }
+        public object Px { get; set; }
+
+        [Parameter]
+        [Transformer(typeof(SizesTransformer))]
+        public object PaddingInline { get; set; }
+
+        [Parameter]
+        [Transformer(typeof(SizesTransformer))]
+        [CssName("padding-left", "padding-right")]
+        public object PaddingX { get; set; }
 
         [Parameter]
         [Transformer(typeof(SizesTransformer))]
         [CssName("padding-top", "padding-bottom")]
-        public string Py { get; set; }
+        public object Py { get; set; }
 
         [Parameter]
         [Transformer(typeof(SizesTransformer))]
-        public string PaddingBlock { get; set; }
+        public object PaddingBlock { get; set; }
 
         [Parameter]
         [Transformer(typeof(SizesTransformer))]
         [CssName("padding-top", "padding-bottom")]
-        public string PaddingY { get; set; }
+        public object PaddingY { get; set; }
     }
 }

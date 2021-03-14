@@ -2,4 +2,15 @@
 
 <h1>Hello, world!</h1>
 
-<Button ColorScheme="blue">Demo button</Button>
+<Button ColorScheme="blue" Size="@size" @onclick="@OnClick" IsDisabled="true">Demo button</Button>
+<Button ColorScheme="blue" Size="@size" @onclick="@OnClick">Demo button</Button>
+
+@code
+{
+    private string size = "lg";
+
+    private void OnClick()
+    {
+        size = "sm";
+    }
+}

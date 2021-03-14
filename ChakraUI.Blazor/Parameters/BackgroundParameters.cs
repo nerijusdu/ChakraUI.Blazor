@@ -45,7 +45,6 @@ namespace ChakraUI.Blazor.Parameters
         public string BgClip { get; set; }
 
         [Parameter]
-        [CssName("background-color")]
         public string Background { get; set; }
 
         [Parameter]

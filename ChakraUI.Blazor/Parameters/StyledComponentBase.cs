@@ -11,7 +11,7 @@ namespace ChakraUI.Blazor.Parameters
             .GetProperties()
             .ToList();
 
-        protected Dictionary<string, object> GetPropertiesDict()
+        public Dictionary<string, object> GetPropertiesDict()
         {
             return Properties
                 .Select(property => new

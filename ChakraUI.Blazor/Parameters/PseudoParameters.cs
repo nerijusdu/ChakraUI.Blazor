@@ -31,15 +31,13 @@ namespace ChakraUI.Blazor.Parameters
         [PseudoClass(PseudoClasses.Active)]
         public PseudoClassParametersBase _active { get; set; }
 
-        protected Dictionary<PseudoClasses, Dictionary<string, object>> GetPseudoClassesWithProperties()
+        public Dictionary<PseudoClasses, PseudoClassParametersBase> GetPseudoClassesWithProperties()
         {
             return Properties
                 .Where(x => x.GetCustomAttribute<PseudoClassAttribute>() != null)
-                .ToDictionary(x => x.GetCustomAttribute<PseudoClassAttribute>()!.Class, x =>
-                {
-                    var pseudoClassParams = (PseudoClassParametersBase) x.GetValue(this);
-                    return pseudoClassParams?.GetPropertiesDict();
-                });
+                .ToDictionary(
+                    x => x.GetCustomAttribute<PseudoClassAttribute>()!.Class,
+                    x => (PseudoClassParametersBase) x.GetValue(this));
         }
     }
 }
